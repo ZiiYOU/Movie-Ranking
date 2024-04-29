@@ -59,6 +59,11 @@
     cursor: pointer;
 }
 
+.top-container .enter:hover{
+    font-size: 16px;
+    transition: .5s;
+}
+
 .list-container{
     width: 95%;
     height: 100%;
@@ -69,6 +74,7 @@
     column-gap: 10px;
     overflow-x: hidden;
     justify-content: center;
+    align-items: center;
 }
 
 .list-container .card{
@@ -84,8 +90,14 @@
     cursor: pointer;
 }
 
+.list-container .card:hover{
+    background-color: #808080;
+    transition: 1s;
+}
+
 .list-container .card img{
     margin: 20px;
+    border-radius: 15px;
 }
 
 .list-container .card_bottom h1{
