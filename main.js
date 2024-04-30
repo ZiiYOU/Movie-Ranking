@@ -48,23 +48,26 @@ getMovies();
 
 function searchMovie(){
     if(input.value.trim() !== ''){
+        let count = 0;
         for(let j=1; j<=list.childElementCount; j++){
             list.childNodes[j].style.display = 'none';
             if(list.childNodes[j].id.toLowerCase().includes(input.value.toLowerCase())){
                 list.childNodes[j].style.display = 'block';
+                count++;
                 scrollTo(0,300);
             }
         }
+        if (count === 0){alert('검색 결과가 없습니다.')};
     }
-}
+};
 
 enter.addEventListener('click',function(event){
     event.preventDefault();
     searchMovie();
-})
+});
 
 function enterkey(){
     if(window.event.keyCode===13){
     searchMovie();
     }
-}
+};
