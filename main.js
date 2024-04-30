@@ -14,8 +14,6 @@ function getMovies(){
     fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
-            console.log(response.results.length);
             response.results.forEach((movie)=>{
                 let card = document.createElement('div');
                 card.classList.add('card');
@@ -27,15 +25,15 @@ function getMovies(){
                 card_bottom.classList.add('card_bottom');
 
                 let title = document.createElement('h1');
-                let year = document.createElement('p');
+                let releaseYear = document.createElement('p');
 
-                card_bottom.append(title, year);
+                card_bottom.append(title, releaseYear);
                 card.append(img, card_bottom);
                 list.appendChild(card);
 
                 title.textContent = movie['title'];
                 img.src = `https://image.tmdb.org/t/p/w200${movie['poster_path']}`
-                year.textContent = `${movie['release_date'].slice(0,4)}.`
+                releaseYear.textContent = `${movie['release_date'].slice(0,4)}.`
 
                 card.addEventListener('click',function(){
                     alert(`영화 id : ${movie['id']}`)
@@ -48,27 +46,25 @@ function getMovies(){
 
 getMovies();
 
-function search(){
+function searchMovie(){
     if(input.value.trim() !== ''){
         for(let j=1; j<=list.childElementCount; j++){
-            console.log(list.childNodes[j])
             list.childNodes[j].style.display = 'none';
             if(list.childNodes[j].id.toLowerCase().includes(input.value.toLowerCase())){
                 list.childNodes[j].style.display = 'block';
                 scrollTo(0,300);
             }
         }
-        input.value = '';
     }
 }
 
 enter.addEventListener('click',function(event){
     event.preventDefault();
-    search();
+    searchMovie();
 })
 
 function enterkey(){
     if(window.event.keyCode===13){
-    search();
+    searchMovie();
     }
 }
